@@ -518,6 +518,16 @@ static int arizona_runtime_resume(struct device *dev)
 		break;
 	};
 
+	switch (arizona->type) {
+	case WM5110:
+	case WM8280:
+		if (arizona->rev == 3 && arizona->pdata.reset)
+			gpio_set_value_cansleep(arizona->pdata.reset, 0);
+		break;
+	default:
+		break;
+	};
+
 	ret = regulator_enable(arizona->dcvdd);
 	if (ret != 0) {
 		dev_err(arizona->dev, "Failed to enable DCVDD: %d\n", ret);
