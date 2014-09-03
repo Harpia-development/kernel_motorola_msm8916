@@ -2731,6 +2731,7 @@ static int smb135x_get_charge_rate(struct smb135x_chg *chip)
 	return POWER_SUPPLY_CHARGE_RATE_NORMAL;
 }
 
+#define HVDCP_INPUT_CURRENT_MAX 1600
 static void rate_check_work(struct work_struct *work)
 {
 	struct smb135x_chg *chip =
