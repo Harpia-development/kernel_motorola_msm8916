@@ -178,7 +178,7 @@ enum {
 
 /* struct binder_fd_array_object - object describing an array of fds in a buffer
  * @hdr:		common header structure
- * @pad:                padding to ensure correct alignment
+ * @pad:		padding to ensure correct alignment
  * @num_fds:		number of file descriptors in the buffer
  * @parent:		index in offset array to buffer holding the fd array
  * @parent_offset:	start offset of fd array in the buffer
@@ -199,7 +199,7 @@ enum {
  */
 struct binder_fd_array_object {
 	struct binder_object_header	hdr;
-	__u32                           pad;
+	__u32				pad;
 	binder_size_t			num_fds;
 	binder_size_t			parent;
 	binder_size_t			parent_offset;
@@ -225,11 +225,6 @@ struct binder_version {
 	__s32       protocol_version;
 };
 
-struct binder_get_peer {
-       pid_t   self;
-       pid_t   remote;
-};
-
 /* This is the current protocol version. */
 #ifdef BINDER_IPC_32BIT
 #define BINDER_CURRENT_PROTOCOL_VERSION 7
@@ -250,15 +245,6 @@ struct binder_node_debug_info {
 	__u32            has_weak_ref;
 };
 
-struct binder_node_info_for_ref {
-	__u32            handle;
-	__u32            strong_count;
-	__u32            weak_count;
-	__u32            reserved1;
-	__u32            reserved2;
-	__u32            reserved3;
-};
-
 #define BINDER_WRITE_READ		_IOWR('b', 1, struct binder_write_read)
 #define	BINDER_SET_IDLE_TIMEOUT		_IOW('b', 3, __s64)
 #define	BINDER_SET_MAX_THREADS		_IOW('b', 5, __u32)
@@ -266,10 +252,7 @@ struct binder_node_info_for_ref {
 #define	BINDER_SET_CONTEXT_MGR		_IOW('b', 7, __s32)
 #define	BINDER_THREAD_EXIT		_IOW('b', 8, __s32)
 #define BINDER_VERSION			_IOWR('b', 9, struct binder_version)
-#define BINDER_GET_PEER_PID            _IOWR('b', 10, struct binder_get_peer)
-#define BINDER_SET_INHERIT_FIFO_PRIO	_IO('b', 10)
 #define BINDER_GET_NODE_DEBUG_INFO	_IOWR('b', 11, struct binder_node_debug_info)
-#define BINDER_GET_NODE_INFO_FOR_REF	_IOWR('b', 12, struct binder_node_info_for_ref)
 
 /*
  * NOTE: Two special error codes you should check for when calling
