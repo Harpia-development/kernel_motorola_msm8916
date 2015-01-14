@@ -200,6 +200,7 @@
                         <&dma_blsp1 5 32 0x20000020 0x20>;
                 dma-names = "tx", "rx";
                 qcom,master-id = <86>;
+                qcom,bam-disable;
 	};
 
 	hob_ram {
