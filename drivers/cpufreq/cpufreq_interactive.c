@@ -793,9 +793,9 @@ static int cpufreq_interactive_notifier(
 	int cpu;
 	unsigned long flags;
 
-	if (val == CPUFREQ_POSTCHANGE) {
-		pcpu = &per_cpu(cpuinfo, freq->cpu);
-		if (!down_read_trylock(&pcpu->enable_sem))
+	if (val == CPUFREQ_PRECHANGE) {
+		ppol = per_cpu(polinfo, freq->cpu);
+		if (!ppol)
 			return 0;
 		if (!pcpu->governor_enabled) {
 			up_read(&pcpu->enable_sem);
