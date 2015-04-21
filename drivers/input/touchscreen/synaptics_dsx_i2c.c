@@ -2075,6 +2075,16 @@ static void synaptics_dsx_sensor_state(struct synaptics_rmi4_data *rmi4_data,
 		if (!rmi4_data->in_bootloader)
 			rmi4_data->in_bootloader = true;
 	case STATE_INIT:
+		/* de-allocate input device earlier to allow */
+		/* EventHub become notified of input removal */
+		if (rmi4_data->input_registered) {
+			input_unregister_device(rmi4_data->input_dev);
+			rmi4_data->input_dev = NULL;
+			rmi4_data->input_registered = false;
+
+			pr_debug("de-allocated input device\n");
+		}
+
 		synaptics_rmi4_irq_enable(rmi4_data, false);
 
 		if (!rmi4_data->in_bootloader) {
