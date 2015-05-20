@@ -115,6 +115,11 @@
 #define ISL98611_DEFAULT_PANEL_BRIGHTNESS 0x09
 #define PANEL_MASK 0x00FF00
 
+/* Set default panel as a no-correction case */
+#define ISL98611_DEFAULT_PANEL 0x07
+#define ISL98611_DEFAULT_PANEL_BRIGHTNESS 0x09
+#define PANEL_MASK 0x00FF00
+
 struct isl98611_chip {
 	struct isl98611_platform_data *pdata;
 	struct regmap *regmap;
