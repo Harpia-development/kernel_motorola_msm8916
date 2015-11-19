@@ -2545,7 +2545,6 @@ void wlan_hdd_tdls_disconnection_callback(hdd_adapter_t *pAdapter)
     pHddTdlsCtx = WLAN_HDD_GET_TDLS_CTX_PTR(pAdapter);
     if (NULL == pHddTdlsCtx)
     {
-       mutex_unlock(&pHddCtx->tdls_lock);
        VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_INFO,
                  FL("pHddTdlsCtx is NULL"));
         return;
