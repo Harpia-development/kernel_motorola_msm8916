@@ -23,7 +23,6 @@
 struct binder_buffer;
 struct binder_node;
 struct binder_proc;
-struct binder_alloc;
 struct binder_ref;
 struct binder_thread;
 struct binder_transaction;
@@ -246,17 +245,14 @@ DECLARE_EVENT_CLASS(binder_buffer_class,
 		__field(int, debug_id)
 		__field(size_t, data_size)
 		__field(size_t, offsets_size)
-		__field(size_t, extra_buffers_size)
 	),
 	TP_fast_assign(
 		__entry->debug_id = buf->debug_id;
 		__entry->data_size = buf->data_size;
 		__entry->offsets_size = buf->offsets_size;
-		__entry->extra_buffers_size = buf->extra_buffers_size;
 	),
-	TP_printk("transaction=%d data_size=%zd offsets_size=%zd extra_buffers_size=%zd",
-		  __entry->debug_id, __entry->data_size, __entry->offsets_size,
-		  __entry->extra_buffers_size)
+	TP_printk("transaction=%d data_size=%zd offsets_size=%zd",
+		  __entry->debug_id, __entry->data_size, __entry->offsets_size)
 );
 
 DEFINE_EVENT(binder_buffer_class, binder_transaction_alloc_buf,
@@ -272,9 +268,9 @@ DEFINE_EVENT(binder_buffer_class, binder_transaction_failed_buffer_release,
 	TP_ARGS(buffer));
 
 TRACE_EVENT(binder_update_page_range,
-	TP_PROTO(struct binder_alloc *alloc, bool allocate,
+	TP_PROTO(struct binder_proc *proc, bool allocate,
 		 void *start, void *end),
-	TP_ARGS(alloc, allocate, start, end),
+	TP_ARGS(proc, allocate, start, end),
 	TP_STRUCT__entry(
 		__field(int, proc)
 		__field(bool, allocate)
@@ -282,9 +278,9 @@ TRACE_EVENT(binder_update_page_range,
 		__field(size_t, size)
 	),
 	TP_fast_assign(
-		__entry->proc = alloc->pid;
+		__entry->proc = proc->pid;
 		__entry->allocate = allocate;
-		__entry->offset = start - alloc->buffer;
+		__entry->offset = start - proc->alloc.buffer;
 		__entry->size = end - start;
 	),
 	TP_printk("proc=%d allocate=%d offset=%zu size=%zu",
@@ -331,3 +327,4 @@ TRACE_EVENT(binder_return,
 #define TRACE_INCLUDE_PATH .
 #define TRACE_INCLUDE_FILE binder_trace
 #include <trace/define_trace.h>
+
