@@ -317,9 +317,6 @@ dtb-$(CONFIG_ARCH_MSM8916) += msm8939-merlin-p1.dtb
 dtb-$(CONFIG_ARCH_MSM8916) += msm8939-merlin-p1v3.dtb
 endif
 
-# Sparrowhawk or Osprey refresh
-dtb-$(CONFIG_ARCH_MSM8916) += msm8929-sparrowhawk-p0.dtb
-
 # Motorola 8936 Devices
 dtb-$(CONFIG_ARCH_MSM8916) += msm8936-lux-p0.dtb
 
