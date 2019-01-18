@@ -23,6 +23,7 @@
 #include <asm/cacheflush.h>
 #include <soc/qcom/scm.h>
 #include "governor.h"
+#include <linux/moduleparam.h>
 
 static DEFINE_SPINLOCK(tz_lock);
 
@@ -54,6 +55,8 @@ static DEFINE_SPINLOCK(tz_lock);
 #define TZ_V2_INIT_ID_64           0xB
 
 #define TAG "msm_adreno_tz: "
+
+static unsigned int adrenoboost = 0;
 
 struct msm_adreno_extended_profile *partner_gpu_profile;
 static void do_partner_start_event(struct work_struct *work);
@@ -87,6 +90,32 @@ static int __secure_tz_reset_entry2(unsigned int *scm_data, u32 size_scm_data,
 	}
 	return ret;
 }
+
+static ssize_t adrenoboost_show(struct device *dev,
+		struct device_attribute *attr, char *buf)
+{
+	size_t count = 0;
+	count += sprintf(buf, "%d\n", adrenoboost);
+
+	return count;
+}
+
+static ssize_t adrenoboost_save(struct device *dev,
+		struct device_attribute *attr, const char *buf, size_t count)
+{
+	int input;
+	sscanf(buf, "%d ", &input);
+	if (input < 0 || input > 3) {
+		adrenoboost = 0;
+	} else {
+		adrenoboost = input;
+	}
+
+	return count;
+}
+
+static DEVICE_ATTR(adrenoboost, 0644,
+		adrenoboost_show, adrenoboost_save);
 
 static int __secure_tz_update_entry3(unsigned int *scm_data, u32 size_scm_data,
 					int *val, u32 size_val, bool is_64)
@@ -187,6 +216,14 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq,
 
 	*freq = stats.current_frequency;
 	priv->bin.total_time += stats.total_time;
+
+	// scale busy time up based on adrenoboost parameter, only if MIN_BUSY exceeded...
+	if ((unsigned int)(priv->bin.busy_time + stats.busy_time) >= MIN_BUSY) {
+		priv->bin.busy_time += stats.busy_time * (1 + (adrenoboost*3)/2);
+	} else {
+		priv->bin.busy_time += stats.busy_time;
+	}
+
 	priv->bin.busy_time += stats.busy_time;
 
 	/*
@@ -316,6 +353,8 @@ static int tz_start(struct devfreq *devfreq)
 		return ret;
 	}
 
+	device_create_file(&devfreq->dev, &dev_attr_adrenoboost);
+
 	return kgsl_devfreq_add_notifier(devfreq->dev.parent, &priv->nb);
 }
 
@@ -328,6 +367,8 @@ static int tz_stop(struct devfreq *devfreq)
 					profile);
 
 	kgsl_devfreq_del_notifier(devfreq->dev.parent, &priv->nb);
+
+	device_remove_file(&devfreq->dev, &dev_attr_adrenoboost);
 
 	flush_workqueue(gpu_profile->partner_wq);
 	destroy_workqueue(gpu_profile->partner_wq);
