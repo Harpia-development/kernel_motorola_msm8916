@@ -80,8 +80,8 @@ static int msm_btsco_ch = 1;
 
 static int msm_mi2s_tx_ch = 2;
 static int msm_pri_mi2s_rx_ch = 2;
-static int pri_rx_sample_rate = SAMPLING_RATE_96KHZ;
-static int mi2s_tx_sample_rate = SAMPLING_RATE_96KHZ;
+static int pri_rx_sample_rate = SAMPLING_RATE_48KHZ;
+static int mi2s_tx_sample_rate = SAMPLING_RATE_48KHZ;
 
 static int msm_proxy_rx_ch = 2;
 static int msm8909_auxpcm_rate = 8000;
@@ -128,7 +128,7 @@ static struct wcd_mbhc_config wcd_mbhc_cfg = {
 	.read_fw_bin = false,
 	.calibration = NULL,
 	.detect_extn_cable = true,
-	.mono_stero_detection = true,
+	.mono_stero_detection = false,
 	.swap_gnd_mic = NULL,
 	.hs_ext_micbias = true,
 };
@@ -301,8 +301,8 @@ struct ext_cdc_tlmm_pinctrl_info {
 static struct cdc_pdm_pinctrl_info pinctrl_info;
 struct ext_cdc_tlmm_pinctrl_info ext_cdc_pinctrl_info;
 
-static int mi2s_rx_bit_format = SNDRV_PCM_FORMAT_S24_LE;
-static int bits_per_sample = 32;
+static int mi2s_rx_bit_format = SNDRV_PCM_FORMAT_S16_LE;
+static int bits_per_sample = 16;
 
 struct msm8909_auxcodec_prefix_map {
 	char codec_name[50];
