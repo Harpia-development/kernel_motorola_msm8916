@@ -2311,15 +2311,11 @@ CONFIG_MEDIA_SUPPORT=y
 #
 # Multimedia core support
 #
-CONFIG_MEDIA_CAMERA_SUPPORT=y
+# CONFIG_MEDIA_CAMERA_SUPPORT is not set
 # CONFIG_MEDIA_ANALOG_TV_SUPPORT is not set
 # CONFIG_MEDIA_DIGITAL_TV_SUPPORT is not set
-CONFIG_MEDIA_RADIO_SUPPORT=y
+# CONFIG_MEDIA_RADIO_SUPPORT is not set
 # CONFIG_MEDIA_RC_SUPPORT is not set
-CONFIG_MEDIA_CONTROLLER=y
-CONFIG_VIDEO_DEV=y
-CONFIG_VIDEO_V4L2_SUBDEV_API=y
-CONFIG_VIDEO_V4L2=y
 # CONFIG_VIDEO_ADV_DEBUG is not set
 # CONFIG_VIDEO_FIXED_MINOR_RANGES is not set
 CONFIG_VIDEOBUF2_CORE=y
@@ -2328,153 +2324,39 @@ CONFIG_VIDEOBUF2_DMA_CONTIG=y
 CONFIG_VIDEOBUF2_VMALLOC=y
 CONFIG_VIDEOBUF2_DMA_SG=y
 CONFIG_VIDEOBUF2_MSM_MEM=y
-# CONFIG_VIDEO_V4L2_INT_DEVICE is not set
 # CONFIG_TTPCI_EEPROM is not set
 
 #
 # Media drivers
 #
 # CONFIG_MEDIA_USB_SUPPORT is not set
-CONFIG_V4L_PLATFORM_DRIVERS=y
-# CONFIG_SOC_CAMERA is not set
-# CONFIG_V4L_MEM2MEM_DRIVERS is not set
-# CONFIG_V4L_TEST_DRIVERS is not set
 
 #
 # Qualcomm MSM Camera And Video
 #
-# CONFIG_MSM_CAMERA is not set
-CONFIG_MSMB_CAMERA=y
-# CONFIG_MSMB_CAMERA_DEBUG is not set
-CONFIG_MSM_CAMERA_SENSOR=y
-CONFIG_MSM_CPP=y
-CONFIG_MSM_CCI=y
-# CONFIG_MSM_CSI20_HEADER is not set
-# CONFIG_MSM_CSI22_HEADER is not set
-CONFIG_MSM_CSI30_HEADER=y
-# CONFIG_MSM_CSI31_HEADER is not set
-CONFIG_MSM_CSIPHY=y
-CONFIG_MSM_CSID=y
-CONFIG_MSM_EEPROM=y
-CONFIG_MSM_ISPIF=y
-# CONFIG_MSM_ISPIF_V1 is not set
-# CONFIG_IMX134 is not set
-# CONFIG_IMX132 is not set
-# CONFIG_OV9724 is not set
-# CONFIG_HI256 is not set
-# CONFIG_OV5648 is not set
-# CONFIG_MT9M114 is not set
-# CONFIG_MT9V113 is not set
-# CONFIG_OV5645 is not set
-# CONFIG_OV7695 is not set
-# CONFIG_SP1628 is not set
-# CONFIG_GC0339 is not set
-# CONFIG_GC0310 is not set
-# CONFIG_OV8825 is not set
-# CONFIG_OV8865 is not set
-# CONFIG_s5k4e1 is not set
-# CONFIG_OV12830 is not set
-# CONFIG_MSM_V4L2_VIDEO_OVERLAY_DEVICE is not set
-CONFIG_MSMB_JPEG=y
-# CONFIG_MSM_FD is not set
-# CONFIG_MSM_USES_M_STACK is not set
-CONFIG_MSM_VIDC_V4L2=y
-# CONFIG_MSM_VIDC_VMEM is not set
-# CONFIG_MSM_WFD is not set
 # CONFIG_TSPP is not set
 # CONFIG_CI_BRIDGE_SPI is not set
-# CONFIG_MSM_VPU is not set
 
 #
 # Supported MMC/SDIO adapters
 #
-CONFIG_RADIO_ADAPTERS=y
-# CONFIG_RADIO_SI470X is not set
-# CONFIG_USB_MR800 is not set
-# CONFIG_USB_DSBR is not set
-# CONFIG_RADIO_SHARK is not set
-# CONFIG_RADIO_SHARK2 is not set
-# CONFIG_I2C_SI4713 is not set
-# CONFIG_RADIO_SI4713 is not set
-# CONFIG_USB_KEENE is not set
-# CONFIG_USB_MA901 is not set
-# CONFIG_RADIO_TEA5764 is not set
-# CONFIG_RADIO_SAA7706H is not set
-# CONFIG_RADIO_TEF6862 is not set
-# CONFIG_RADIO_WL1273 is not set
-
-#
-# Texas Instruments WL128x FM driver (ST based)
-#
-CONFIG_RADIO_IRIS=y
-CONFIG_RADIO_IRIS_TRANSPORT=y
-# CONFIG_RADIO_SILABS is not set
 # CONFIG_CYPRESS_FIRMWARE is not set
 
 #
 # Media ancillary drivers (tuners, sensors, i2c, frontends)
 #
-CONFIG_MEDIA_SUBDRV_AUTOSELECT=y
-CONFIG_MEDIA_ATTACH=y
 
 #
-# Audio decoders, processors and mixers
+# Customise DVB Frontends
 #
-
-#
-# RDS decoders
-#
-
-#
-# Video decoders
-#
-
-#
-# Video and audio decoders
-#
-
-#
-# Video encoders
-#
-
-#
-# Camera sensor devices
-#
-
-#
-# Flash devices
-#
-
-#
-# Video improvement chips
-#
-
-#
-# Miscelaneous helper chips
-#
-
-#
-# Sensors used on soc_camera driver
-#
-CONFIG_MEDIA_TUNER=y
-CONFIG_MEDIA_TUNER_SIMPLE=y
-CONFIG_MEDIA_TUNER_TDA8290=y
-CONFIG_MEDIA_TUNER_TDA827X=y
-CONFIG_MEDIA_TUNER_TDA18271=y
-CONFIG_MEDIA_TUNER_TDA9887=y
-CONFIG_MEDIA_TUNER_TEA5761=y
-CONFIG_MEDIA_TUNER_TEA5767=y
-CONFIG_MEDIA_TUNER_MT20XX=y
-CONFIG_MEDIA_TUNER_XC2028=y
-CONFIG_MEDIA_TUNER_XC5000=y
-CONFIG_MEDIA_TUNER_XC4000=y
-CONFIG_MEDIA_TUNER_MC44S803=y
+CONFIG_DVB_TUNER_DIB0070=m
+CONFIG_DVB_TUNER_DIB0090=m
 
 #
 # Tools to develop new frontends
 #
 # CONFIG_DVB_DUMMY_FE is not set
-CONFIG_ISDBT_NMI=y
+# CONFIG_ISDBT_NMI is not set
 
 #
 # Graphics support
@@ -3230,16 +3112,7 @@ CONFIG_ION_MSM=y
 # Qualcomm Atheros Prima WLAN module
 #
 # CONFIG_PRIMA_WLAN is not set
-CONFIG_PRONTO_WLAN=y
-# CONFIG_PRIMA_WLAN_BTAMP is not set
-CONFIG_PRIMA_WLAN_LFR=y
-CONFIG_PRIMA_WLAN_OKC=y
-CONFIG_PRIMA_WLAN_11AC_HIGH_TP=y
-CONFIG_WLAN_FEATURE_11W=y
-CONFIG_QCOM_TDLS=y
-CONFIG_QCOM_VOWIFI_11R=y
-CONFIG_ENABLE_LINUX_REG=y
-# CONFIG_WLAN_OFFLOAD_PACKETS is not set
+# CONFIG_PRONTO_WLAN is not set
 
 #
 # Qualcomm MSM specific device drivers
