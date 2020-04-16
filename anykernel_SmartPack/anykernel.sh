@@ -9,13 +9,13 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=SmartPack Kernel by sunilpaulmathew@xda-developers.com
+kernel.string=SmartPack Kernel by jro1979
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=Moto G3
-device.name2=osprey
+device.name1=Moto G Play
+device.name2=harpia
 device.name3=
 device.name4=
 device.name5=

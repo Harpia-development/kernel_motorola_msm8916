@@ -34,17 +34,17 @@
 #
 # ***** ***** *Variables to be configured manually* ***** ***** #
 
-TOOLCHAIN="/home/sunil/UBERTC-arm-eabi-8.2.1/bin/arm-linux-gnueabi-"
+TOOLCHAIN="/home/jeferson/toolchain/bin/arm-eabi-"
 
 ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
 
-KERNEL_VARIANT="osprey"	# please leave as such
+KERNEL_VARIANT="harpia"	# please leave as such
 
-KERNEL_VERSION="beta-v8"   # leave as such, if no specific version tag
+KERNEL_VERSION="beta-v1"   # leave as such, if no specific version tag
 
-KERNEL_DEFCONFIG="osprey_defconfig"
+KERNEL_DEFCONFIG="harpia_defconfig"
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
