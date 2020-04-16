@@ -40,11 +40,11 @@ ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel"
 
-KERNEL_VARIANT="osprey"	# please leave as such
+KERNEL_VARIANT="harpia"	# please leave as such
 
 KERNEL_VERSION="beta-v10.1"   # leave as such, if no specific version tag
 
-KERNEL_DEFCONFIG="osprey_defconfig"
+KERNEL_DEFCONFIG="harpia_defconfig"
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
