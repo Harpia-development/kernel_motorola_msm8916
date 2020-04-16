@@ -15,9 +15,3 @@ config ALUCARD_HOTPLUG
  	default y
  	help
  	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
-
-config MSM_SLEEPER
- 	bool "CPU hotplug driver"
- 	default y
- 	help
- 	  CPU hotplug driver
